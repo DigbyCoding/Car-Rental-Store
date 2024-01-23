@@ -40,9 +40,30 @@ class HomeRow(customtkinter.CTkFrame):
     def homeButton(self):
 
         image_path = os.path.join(os.path.relpath('assets'))
-        self.settingsImage = customtkinter.CTkImage(Image.open(os.path.join(image_path, "settings.png")), size=(50, 50))
-        self.homeImage = customtkinter.CTkImage(Image.open(os.path.join(image_path, "home.png")), size=(50, 50))
-        self.carImage = customtkinter.CTkImage(Image.open(os.path.join(image_path, "car.png")), size=(50, 50))
+        self.settingsImage = customtkinter.CTkImage(
+            Image.open(
+                os.path.join(
+                    image_path,
+                    "settings.png"
+                )),
+            size=(50, 50)
+        )
+        self.homeImage = customtkinter.CTkImage(
+            Image.open(
+                os.path.join(
+                    image_path,
+                    "home.png"
+                )),
+            size=(50, 50)
+        )
+        self.carImage = customtkinter.CTkImage(
+            Image.open(
+                os.path.join(
+                    image_path,
+                    "car.png"
+                )),
+            size=(50, 50)
+        )
 
         self.homeButton = customtkinter.CTkButton(
             self, 
