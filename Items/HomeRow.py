@@ -4,6 +4,8 @@
 #
 import customtkinter
 
+from PIL import Image, ImageTk
+import os
 ##
 # This line defines a class called HomeRow, that inherits from the
 # CTkFrame class from the customtkinter module. This means that
@@ -36,14 +38,24 @@ class HomeRow(customtkinter.CTkFrame):
     # the frame) relative to the top-left corner of the frame.
     #
     def homeButton(self):
+
+        image_path = os.path.join(os.path.relpath('assets'))
+        self.settingsImage = customtkinter.CTkImage(Image.open(os.path.join(image_path, "settings.png")), size=(50, 50))
+        self.homeImage = customtkinter.CTkImage(Image.open(os.path.join(image_path, "home.png")), size=(50, 50))
+        self.carImage = customtkinter.CTkImage(Image.open(os.path.join(image_path, "car.png")), size=(50, 50))
+
         self.homeButton = customtkinter.CTkButton(
             self, 
-            text="🏠",
+            image=self.homeImage,
+            text="",
             command=self.homeButtonFunctionality,
             width=50,
-            height= 50
+            height= 50,
+            fg_color="transparent",
+            hover_color="#8A8A8A"
         )
         self.homeButton.place(x = 107, rely = 0.25)
+
     ##
     # This method is similar to the homeButton() method, but it
     # creates a button with the text "⚙️" (this will also be changed)
@@ -55,10 +67,13 @@ class HomeRow(customtkinter.CTkFrame):
     def settingsButton(self):
         self.settingsButton = customtkinter.CTkButton(
             self,
-            text="⚙️",
+            image=self.settingsImage,
+            text="",
             command=self.settingsButtonFunctionality,
             width=50,
-            height= 50
+            height= 50,
+            fg_color="transparent",
+            hover_color="#8A8A8A"
         )
         self.settingsButton.place(x = 265, rely = 0.25)
 
@@ -72,10 +87,13 @@ class HomeRow(customtkinter.CTkFrame):
     def myCarButton(self):
         self.myCarButton = customtkinter.CTkButton(
             self,
-            text="🚗",
+            image=self.carImage,
+            text="",
             command=self.myCarButtonFunctionality,
             width=50,
-            height= 50
+            height= 50,
+            fg_color="transparent",
+            hover_color="#8A8A8A"
         )
         self.myCarButton.place(x = 423, rely = 0.25)
 
