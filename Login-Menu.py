@@ -2,13 +2,14 @@
 import customtkinter as ctk 
 import tkinter as tk 
 from CTkMessagebox import CTkMessagebox as ctkmb 
+import Database_Intergration
 
 # create a login class with toplevel window and set up window 
 class Login(ctk.CTkToplevel):
         def __init__(self):
                 super().__init__()
                 self.geometry('580x1100')
-                self._set_appearance_mode('system')
+                #self._set_appearance_mode('system')
                 
                 #create frame to place all entry and buttons for login
                 self.frame = ctk.CTkFrame(master = self, width = 500, height = 500)
@@ -59,8 +60,15 @@ class Button_item(ctk.CTkButton):
                                 print('unsucessful login try again')
                                 ctkmb(message = 'Unsucessful Login Try Again', icon = 'cancel')
                         else:
-                                print('you have logged in')
-                                ctkmb(title = 'Logged in', message = 'Sucessfully Logged In! ', icon = 'check')
+                                #try:
+                                        get_check_username = self.get_user.get_User()
+                                        get_check_password = self.get_password.get_Pass()
+                                        check_username = Database_Intergration.runSQL(f"SELECT Username FROM Login WHERE Username = '{get_check_username}'", True)
+                                        #check_password = Database_Intergration.runSQL(f"SELECT Password FROM Login")
+                                        print('you have logged in')
+                                        ctkmb(title = 'Logged in', message = 'Sucessfully Logged In! ', icon = 'check')
+                                #except:
+                                        print('why')
                                 # move onto homepage
 
                 elif textName == 'Sign Up':

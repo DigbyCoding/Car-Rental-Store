@@ -7,8 +7,8 @@ conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:
 
 
 
-def main():
-    runSQL("SELECT * FROM Login",True)
+#def main():
+#    runSQL("SELECT * FROM Login",True)
 
 
 
@@ -18,6 +18,8 @@ def runSQL(strSQL, results):
     cursor = conn.cursor()
     cursor.execute(strSQL)
 
+    fetched_values = []
+
     if results:
         print('\n')
 
@@ -26,9 +28,11 @@ def runSQL(strSQL, results):
             print(c, end = ",")
         print("")
 
+
         for row in cursor.fetchall():
             for c in row:
                 print(c, end = "\t")
+                fetched_values.append(row)
         print("")
 
     else:
@@ -37,4 +41,5 @@ def runSQL(strSQL, results):
     
     cursor.close()
 
-main()
+    return fetched_values
+
